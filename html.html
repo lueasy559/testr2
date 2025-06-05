@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HLS Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+  <video id="video" controls width="640"></video>
+<script>
+  const video = document.getElementById('video');
+  const videoUrl = 'https://559479.xyz/out/output.m3u8';
+
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.on(Hls.Events.ERROR, (event, data) => {
+      console.error('HLS 错误:', data);
+    });
+    hls.loadSource(videoUrl);
+    hls.attachMedia(video);
+  } else {
+    console.error('浏览器不支持 HLS');
+  }
+</script>
+</body>
+</html>
